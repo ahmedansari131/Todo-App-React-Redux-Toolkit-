@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { addTodo, updateTodo } from "../slices/todoSlice";
 import { useDispatch } from "react-redux";
+import PrimaryBtn from "./buttons/PrimaryBtn";
+import SecondaryBtn from "./buttons/SecondaryBtn";
 
 const AddTodo = (props) => {
   const {inputText, setInputText, isUpdating, setIsUpdating, todoId} = props;
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
-
     if(isUpdating){
       dispatch(updateTodo([inputText, todoId]));
       setInputText("");
@@ -38,12 +38,8 @@ const AddTodo = (props) => {
           className="w-full rounded-md resize-none outline-none p-3 h-full"
         ></textarea>
         <div className="flex gap-5">
-          <button onClick={handleSubmit} className="py-2 px-10 border border-sky-400 bg-sky-400 text-white rounded-md font-medium uppercase hover:bg-sky-600 transition-all duration-200">
-            {isUpdating ? "Update" : "Add"}
-          </button>
-          <button onClick={() => setInputText("")} className="py-2 px-10 border border-sky-400 text-white rounded-md font-medium uppercase hover:bg-sky-900 transition-all duration-200">
-            Clear
-          </button>
+          <PrimaryBtn text="Add" action={handleSubmit} isUpdating={isUpdating} />
+          <SecondaryBtn setInputText={setInputText} />
         </div>
       </form>
     </div>

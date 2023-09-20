@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeTodo, updateTodo } from "../slices/todoSlice";
-import AddTodo from "./AddTodo";
 
 const TodoList = (props) => {
   const { inputText, setInputText, isUpdating, setIsUpdating, todoId, setTodoId } = props;
   const todos = useSelector((state) => state.todos);
   const dispatch = useDispatch();
 
-  const getTextToInput = (text, id) => {
+  const getTextToInput = (text) => {
     setIsUpdating(true);
     let todoText = text;
     setInputText(todoText);
